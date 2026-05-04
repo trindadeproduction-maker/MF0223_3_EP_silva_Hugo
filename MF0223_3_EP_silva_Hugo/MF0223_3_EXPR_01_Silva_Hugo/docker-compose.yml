@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  srv_dev_xx: # Recomendado: usar minúsculas para nombres de servicios
+    image: ubuntu:latest
+    container_name: srv_dev_XX
+    stdin_open: true # Equivalente a -i
+    tty: true        # Equivalente a -t, evita que el contenedor se apague
+    volumes:
+      - ./srv_dev_XX:/srv_dev_XX
+      - datos_dev_XX:/var/empresa
+    networks:
+      - net_dev_XX
+    ports:
+      - "8080:80"
+    restart: unless-stopped # Recomendado para entornos de desarrollo
+
+volumes:
+  datos_dev_XX:
+    driver: local
+
+networks:
+  net_dev_XX:
+    driver: bridge
